@@ -1,0 +1,39 @@
+POST http://localhost:3000/songs
+
+Content-Type: application/json
+{
+    "title": "Okay",
+    "artists": [5],
+    "releasedDate": "2022-02-22",
+    "duration" : "06:21",
+    "lyrics" : "Hook - von blanc) Vvs's in my chain I feel good now All this money coming I don't know how I'm ugly but she wanna fuck me anyhow All these bitches givin' brain I feel good now Vvs's in my chain I feel good now All this money coming I don't know how I'm ugly but she wanna fuck me anyhow All these bitches givin' brain I feel good now"
+}
+
+
+
+GET http://localhost:3000
+
+
+GET http://localhost:3000/songs
+
+GET http://localhost:3000/songs/1
+
+PUT http://localhost:3000/1
+
+
+DELETE http://localhost:3000/1
+
+
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+{
+    "firstName": "Kabza",
+    "lastName": "Smallz",
+    "email": "kM@gmail.com",
+    "password" : "123456"
+}
+
+POST http://localhost:3000/auth/login
+POST http://localhost:3000/profile
+
+# 
