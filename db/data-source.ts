@@ -6,21 +6,21 @@ import { Song } from "../src/songs/song.entity";
 import { Users } from "../src/users/user.entity";
 import { DataSource, DataSourceOptions } from "typeorm";
 
-export const dataSourceOptions: DataSourceOptions = {
+// export const dataSourceOptions: DataSourceOptions = {
 
-    database: 'spotify_clone_03',
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    // port : 3306
-    username: 'postgres',
-    password: 'root',
-    // Regitstering entities
-    entities: [Users, Playlist, Song, Artists],
-    synchronize: false,
-    migrations: ['dist/db/migrations/*.js']
+//     database: 'spotify_clone_03',
+//     type: 'postgres',
+//     host: 'localhost',
+//     port: 5432,
+//     // port : 3306
+//     username: 'postgres',
+//     password: 'root',
+//     // Regitstering entities
+//     entities: [Users, Playlist, Song, Artists],
+//     synchronize: false,
+//     migrations: ['dist/db/migrations/*.js']
 
-}
+// }
 // const dataSource = new DataSource(dataSourceOptions);
 // export default dataSource;
 

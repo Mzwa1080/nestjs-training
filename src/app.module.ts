@@ -17,7 +17,7 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ArtistsService } from './artists/artists.service';
 import { ArtistsModule } from './artists/artists.module';
-import { dataSourceOptions, typeOrmAsyncConfig } from '../db/data-source';
+import {  typeOrmAsyncConfig } from '../db/data-source';
 import { SeedModule } from './seed/seed.module';
 import { ConfigModule } from '@nestjs/config';
 import configurations from './config/configurations';
