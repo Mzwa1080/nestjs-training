@@ -3,15 +3,15 @@ services:
   app:
     image: node:14
     ports:
-      - "${PORT}:3000"
+      - "3000:3000"  
     environment:
-      - NODE_ENV=${NODE_ENV}
-      - SECRET=${SECRET}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_USERNAME=${USERNAME}
-      - DB_PASSWORD=${PASSWORD}
-      - DB_NAME=${DB_NAME}
+      - NODE_ENV=production
+      - SECRET='HAD_MZW@'
+      - DB_HOST=postgres.railway.internal
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=KFjQviXLOUaZSLTCQJbVdNKmWzxnCAnJ
+      - DB_NAME=railway
     volumes:
       - .:/usr/src/app
     working_dir: /usr/src/app
@@ -20,13 +20,12 @@ services:
   db:
     image: postgres:13
     environment:
-      POSTGRES_USER: ${USERNAME}
-      POSTGRES_PASSWORD: ${PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: KFjQviXLOUaZSLTCQJbVdNKmWzxnCAnJ
+      POSTGRES_DB: railway
     ports:
-      - "${DB_PORT}:5432"
-
+      - "5432:5432"  
   redis:
     image: redis:alpine
     ports:
-      - "6379:6379"
+      - "6379:6379"  
