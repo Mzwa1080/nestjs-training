@@ -17,7 +17,7 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ArtistsService } from './artists/artists.service';
 import { ArtistsModule } from './artists/artists.module';
-import {  typeOrmAsyncConfig } from '../db/data-source';
+import { dataSourceOptions } from '../db/data-source';
 import { SeedModule } from './seed/seed.module';
 import { ConfigModule } from '@nestjs/config';
 import configurations from './config/configurations';
@@ -39,7 +39,7 @@ const proConfig = {port : 4000}
     AuthModule,
     UsersModule,
     ArtistsModule,
-    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
+    TypeOrmModule.forRoot(dataSourceOptions),
     SeedModule,
     // 
     ConfigModule.forRoot({

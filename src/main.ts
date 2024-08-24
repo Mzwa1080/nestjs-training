@@ -1,26 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { SeedService } from './seed/seed.service';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser'
 import * as session from 'express-session';
 
-declare const module : any;
-
+// const RedisStore = require('connect-redis')(session);
+// const redisClient = require('redis').createClient();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe()),
   app.use(cookieParser());
-  app.use(
-    session({
-      secret : 'my-secret',
-      resave: false,
-      saveUninitialized:false
-    })
-  )
+  app.use(session({
+    // store: new RedisStore({ client: redisClient }),
+    secret: 'your-secret',
+    resave: false,
+    saveUninitialized: false
+  }));
   
 //===== SETTING UP SWAGGER ========
   const config = new DocumentBuilder()
