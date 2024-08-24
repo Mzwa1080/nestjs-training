@@ -21,26 +21,26 @@ export const dataSourceOptions: DataSourceOptions = {
     migrations: ['dist/db/migrations/*.js']
 
 }
-const dataSource = new DataSource(dataSourceOptions);
-export default dataSource;
+// const dataSource = new DataSource(dataSourceOptions);
+// export default dataSource;
 
 export const typeOrmAsyncConfig : TypeOrmModuleAsyncOptions = {
     imports : [ConfigModule],
     inject : [ConfigService],
 
     useFactory:async (configService:ConfigService):Promise<TypeOrmModuleOptions> =>{
-        return {
-            type:'postgres',
-            host : configService.get<string>('DB_HOST'),
-            port : +configService.get<number>('DB_PORT'),
-            username : configService.get<string>('USERNAME'),
-            database : configService.get<string>('DB_NAME'),
-            password : configService.get<string>('PASSWORD'),
-            entities : [Users, Playlist, Song, Artists],
-            synchronize : false,
-            migrations: ['dist/db/migrations/*.js']
+        const isProduction = process.env.NODE_ENV === 'production';
 
-
-        }
+          return {
+            type: 'postgres',
+            host: isProduction ? configService.get<string>('DB_HOST') : 'localhost',
+            port: isProduction ? +configService.get<number>('DB_PORT') : 5432,
+            username: isProduction ? configService.get<string>('USERNAME') : 'postgres',
+            password: isProduction ? configService.get<string>('PASSWORD') : 'root',
+            database: isProduction ? configService.get<string>('DB_NAME') : 'spotify_clone_03',
+            entities: [Users, Playlist, Song, Artists],
+            synchronize: false,
+            migrations: ['dist/db/migrations/*.js'],
+        };
     }
 }
