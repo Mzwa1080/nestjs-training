@@ -5,7 +5,7 @@ import { Playlist } from "../src/playlists/playlist.entity";
 import { Song } from "../src/songs/song.entity";
 import { Users } from "../src/users/user.entity";
 import { DataSource, DataSourceOptions } from "typeorm";
-
+import 'dotenv/config'
 const isProduction = process.env.NODE_ENV === 'production';
 export const dataSourceOptions: DataSourceOptions = {
 
@@ -20,6 +20,7 @@ export const dataSourceOptions: DataSourceOptions = {
     migrations: ['dist/db/migrations/*.js']
 
 }
+
 const dataSource = new DataSource(dataSourceOptions);
 export default dataSource;
 
