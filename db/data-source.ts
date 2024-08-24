@@ -25,13 +25,12 @@ import { DataSource, DataSourceOptions } from "typeorm";
 // export default dataSource;
 
 export const typeOrmAsyncConfig : TypeOrmModuleAsyncOptions = {
-    imports : [ConfigModule],
-    inject : [ConfigService],
-
-    useFactory:async (configService:ConfigService):Promise<TypeOrmModuleOptions> =>{
+    imports: [ConfigModule],
+    inject: [ConfigService],
+    useFactory: async (configService: ConfigService): Promise<TypeOrmModuleOptions> => {
         const isProduction = process.env.NODE_ENV === 'production';
 
-          return {
+        return {
             type: 'postgres',
             host: isProduction ? configService.get<string>('DB_HOST') : 'localhost',
             port: isProduction ? +configService.get<number>('DB_PORT') : 5432,

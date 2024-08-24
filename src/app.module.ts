@@ -39,7 +39,7 @@ const proConfig = {port : 4000}
     AuthModule,
     UsersModule,
     ArtistsModule,
-    TypeOrmModule.forRoot(typeOrmAsyncConfig),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     SeedModule,
     // 
     ConfigModule.forRoot({
