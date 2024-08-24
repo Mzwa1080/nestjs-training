@@ -43,8 +43,8 @@ const proConfig = {port : 4000}
     SeedModule,
     // 
     ConfigModule.forRoot({
-      envFilePath : ['.env.development', '.env.production'],
-      // envFilePath : [`${process.cwd()}/.env.${process.env.NODE_ENV}`],
+      // envFilePath : ['.env.development', '.env.production'],
+      envFilePath : [`${process.cwd()}/.env.development`, `${process.cwd()}/.env.production`],
       isGlobal : true,
       load:[configurations],
       validate : validate

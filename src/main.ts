@@ -42,21 +42,25 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document)
 // ========= CLOSE SWAGGER SETUP ============
 
+
+// ================= SEEDING =============
+// const seedService = app.get(SeedService)
+// await seedService.seed()
+//================  SEEDING ============
+
+
+
+const configService = app.get(ConfigService)
+await app.listen(configService.get<number>('PORT'));
 // console.log(configService.get<string>('NODE_ENV'))
-  // const seedService = app.get(SeedService)
-  // await seedService.seed()
-  const configService = app.get(ConfigService)
-
-  await app.listen(configService.get<number>('port'));
-
   
   // ======== HOT.MODULE ============
 
-  if(module.hot){
-    module.hot.accept()
-    module.
-    hot.dispose(()=> app.close())
-  }
+  // if(module.hot){
+  //   module.hot.accept()
+  //   module.
+  //   hot.dispose(()=> app.close())
+  // }
   // ======= END OF HOT MODULE =======
 }
 bootstrap();

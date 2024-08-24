@@ -12,6 +12,6 @@ export class AppService {
   //   return `Hello I am learning Nest.js Fundamentals ${this.devConfigService.getDBHOST()  } PORT=${this.config}`;
   // }
   getHello(): string {
-    return `Hello World!`;
+    return process.env.NODE_ENV;
   }
 }

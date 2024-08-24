@@ -10,13 +10,5 @@ export default()=>({
     password : process.env.PASSWORD,
     dbName: process.env.DB_NAME
 
-    
-    // database: 'spotify_migration',
-    // type: 'postgres',
-    // host: 'localhost',
-    // port: 5432,
-    // // port : 3306
-    // username: 'postgres',
-    // password: 'root'
 
 })

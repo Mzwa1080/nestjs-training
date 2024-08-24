@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import {IsEnum, IsNumber, IsString, validateSync}  from 'class-validator';
+import { IsEnum, IsNumber, IsString, IsNumberString, validateSync } from 'class-validator';
 
 enum Environment {
     Development = 'development',
@@ -10,39 +10,35 @@ enum Environment {
 
 class EnvironmentVariables {
     @IsEnum(Environment)
-    NODE_ENV:Environment;
+    NODE_ENV: Environment;
 
     @IsNumber()
-    PORT : number;
+    PORT: number;
 
     @IsString()
-    DB_HOST : string;
+    DB_HOST: string;
 
     @IsString()
-    USERNAME : string;
+    USERNAME: string;
 
     @IsString()
-    PASSWORD : string;
+    PASSWORD: string;
 
     @IsString()
-    secret : string;
+    SECRET: string;
 }
 
-export function validate(config: Record<string, unknown>){
+export function validate(config: Record<string, unknown>) {
+    const validatedConfig = plainToInstance(EnvironmentVariables, config, {
+        enableImplicitConversion: true,
+    });
 
-// console.log('config', config);
-const validatedConfig = plainToInstance(EnvironmentVariables, config, {
-    enableImplicitConversion : true,
-})
-// console.log(validatedConfig);
+    const errors = validateSync(validatedConfig, {
+        skipMissingProperties: false,
+    });
 
-const errors = validateSync(validatedConfig, {
-    skipMissingProperties : false,
-})
-
-if(errors.length > 0){
-    throw new Error(errors.toString())
-}
-return validatedConfig;
- 
+    if (errors.length > 0) {
+        throw new Error(errors.toString());
+    }
+    return validatedConfig;
 }

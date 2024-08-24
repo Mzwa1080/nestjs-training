@@ -8,7 +8,7 @@ import { DataSource, DataSourceOptions } from "typeorm";
 
 export const dataSourceOptions: DataSourceOptions = {
 
-    database: 'spotify_migration',
+    database: 'spotify_clone_03',
     type: 'postgres',
     host: 'localhost',
     port: 5432,
@@ -31,11 +31,11 @@ export const typeOrmAsyncConfig : TypeOrmModuleAsyncOptions = {
     useFactory:async (configService:ConfigService):Promise<TypeOrmModuleOptions> =>{
         return {
             type:'postgres',
-            host : configService.get<string>('dbHost'),
-            port : configService.get<number>('dbPort'),
-            username : configService.get<string>('username'),
-            database : configService.get<string>('dbName'),
-            password : configService.get<string>('password'),
+            host : configService.get<string>('DB_HOST'),
+            port : +configService.get<number>('DB_PORT'),
+            username : configService.get<string>('USERNAME'),
+            database : configService.get<string>('DB_NAME'),
+            password : configService.get<string>('PASSWORD'),
             entities : [Users, Playlist, Song, Artists],
             synchronize : false,
             migrations: ['dist/db/migrations/*.js']
